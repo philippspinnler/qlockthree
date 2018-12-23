@@ -120,7 +120,10 @@ def draw_words():
     current_minute = now.minute // 5 * 5
 
     if current_minute > 20:
-        current_hour = current_hour + 1
+        if current_hour == 23:
+            current_hour = 0
+        else:
+            current_hour = current_hour + 1
 
     for led in hours[current_hour]:
         pixels.set_pixel(led, get_color())
