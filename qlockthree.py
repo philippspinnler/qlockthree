@@ -44,6 +44,7 @@ minute_halb = [6, 16, 27, 36]
 hour_elf = [56, 67, 76]
 hour_fuenf = [76, 87, 96, 108]
 hour_eins = [5, 17, 26, 37]
+hour_ein = [5, 17, 26]
 hour_zwei = [77, 86, 97, 107]
 hour_drei = [4, 18, 25, 38]
 hour_vier = [78, 85, 98, 106]
@@ -125,8 +126,13 @@ def draw_words():
         else:
             current_hour = current_hour + 1
 
-    for led in hours[current_hour]:
-        pixels.set_pixel(led, get_color())
+    # show "ein uhr" and not "eins uhr"
+    if current_minute == 0 and (current_hour == 1 or current_hour == 13):
+        for led in hour_ein:
+            pixels.set_pixel(led, get_color())
+    else:
+        for led in hours[current_hour]:
+            pixels.set_pixel(led, get_color())
 
     for led in minutes[current_minute]:
         pixels.set_pixel(led, get_color())
