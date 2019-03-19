@@ -27,7 +27,6 @@ class Strip(ABC):
 
     leds_currently_on = []
     leds_to_turn_on = []
-    leds_to_turn_off = []
 
     is_environment_bright = True
 
@@ -38,7 +37,7 @@ class Strip(ABC):
     def set_pixel(self, led_nr, color=None):
         if not color:
             color = self.get_color()
-        self.leds_to_turn_on.append({"led_nr": led_nr, "color": color})
+        self.leds_to_turn_on.append({"led_nr": led_nr, "r": color.r, "g": color.g, "b": color.b})
 
     def clear_all(self):
         for led in range(self.led_count):

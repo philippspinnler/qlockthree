@@ -1,5 +1,3 @@
-import RPi.GPIO as GPIO
-
 from strip import Strip
 
 
@@ -8,6 +6,7 @@ class WS2801(Strip):
     def __init__(self):
         super(WS2801, self).__init__()
 
+        import RPi.GPIO as GPIO
         import Adafruit_WS2801
 
         PIXEL_COUNT = 114

@@ -19,11 +19,6 @@ class WS2812b(Strip):
 
         self.led_count = LED_COUNT
 
-        self.color_white_bright = Color(200, 200, 200)
-        self.color_white_dark = Color(30, 30, 30)
-        self.color_green = Color(0, 128, 0)
-        self.color_red = Color(139, 0, 0)
-
         self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
         self.strip.begin()
 
@@ -35,8 +30,8 @@ class WS2812b(Strip):
         for led in turn_off:
             self.strip.setPixelColor(led['led_nr'], WS2812Color(0, 0, 0))
         for led in turn_on:
-            self.strip.setPixelColor(led['led_nr'], WS2812Color(led['color'].r, led['color'].g, led['color'].b))
+            self.strip.setPixelColor(led['led_nr'], WS2812Color(led['r'], led['g'], led['b']))
 
         self.strip.show()
-        self.leds_currently_on = turn_on
+        self.leds_currently_on = self.leds_to_turn_on
         self.leds_to_turn_on = []
