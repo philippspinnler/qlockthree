@@ -1,4 +1,4 @@
-from strip import Strip
+from strip import Strip, Color
 
 
 class WS2812b(Strip):
@@ -6,7 +6,7 @@ class WS2812b(Strip):
     def __init__(self):
         super(WS2812b, self).__init__()
 
-        from neopixel import Adafruit_NeoPixel, Color
+        from neopixel import Adafruit_NeoPixel
 
         # LED strip configuration:
         LED_COUNT = 114  # Number of LED pixels.
@@ -29,13 +29,13 @@ class WS2812b(Strip):
 
     def show(self):
 
-        from neopixel import Color
+        from neopixel import Color as WS2812Color
 
         turn_off, turn_on = self.get_changes()
         for led in turn_off:
-            self.strip.setPixelColor(led['led_nr'], Color(0, 0, 0))
+            self.strip.setPixelColor(led['led_nr'], WS2812Color(0, 0, 0))
         for led in turn_on:
-            self.strip.setPixelColor(led['led_nr'], Color(led['color'].r, led['color'].g, led['color'].b))
+            self.strip.setPixelColor(led['led_nr'], WS2812Color(led['color'].r, led['color'].g, led['color'].b))
 
         self.strip.show()
         self.leds_currently_on = turn_on
