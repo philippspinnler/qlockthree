@@ -30,6 +30,8 @@ class Strip(ABC):
 
     is_environment_bright = True
 
+    color_generator = None
+
     @abc.abstractmethod
     def __init__(self):
         pass
@@ -56,6 +58,8 @@ class Strip(ABC):
         return [x for x in self.leds_currently_on if x not in self.leds_to_turn_on], [x for x in self.leds_to_turn_on if x not in self.leds_currently_on]
 
     def get_color(self):
+        if self.color_generator:
+            return self.color_generator(self.is_environment_bright)
         return self.color_white_bright if self.is_environment_bright else self.color_white_dark
 
     @abc.abstractmethod

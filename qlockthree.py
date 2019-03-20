@@ -6,6 +6,7 @@ import time
 
 from strip import WS2801, WS2812b
 from util import hour_ein, hours, minutes, dots, word_es, word_ist
+from util.party import color_generator
 from util.wifi import check_wifi
 
 light_sensor_pin = 40
@@ -58,6 +59,8 @@ if __name__ == "__main__":
     strip.test()
 
     check_wifi(strip)
+
+    strip.color_generator = color_generator
 
     last_timestamp = None
     was_environment_bright = True
