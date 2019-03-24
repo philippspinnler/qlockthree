@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     check_wifi(strip)
 
-    strip.color_generator = color_generator
+    # strip.color_generator = color_generator
 
     last_timestamp = None
     was_environment_bright = True
